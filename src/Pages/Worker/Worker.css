@@ -1,0 +1,23 @@
+.home-div{
+    margin: 150px 100px 200px 100px;
+}
+.max-height {
+    height: 100%;
+    margin: 0;
+}
+.title{
+    font-weight: 800;
+    font-size: 4em;
+    color: #8d4cee;
+    margin: 0;
+}
+.home-button{
+    background-color: #f03639 !important;
+    border-radius:5em !important;
+}
+.grid-div{
+    margin:5em;
+padding: 5em;
+    height: 100%;
+    /* width: 100%; */
+}
