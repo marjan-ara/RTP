@@ -4,7 +4,11 @@ body {
     padding: 0;
     height: 100%;
 }
-
+.flex-container{
+    display: flex;
+    flex-direction: column;
+    /* align-items: stretch; */
+}
 .max-height{
     height: 100%;
     margin: 0;
@@ -58,7 +62,7 @@ body {
     /* border-bottom-right-radius:50%; */
 }
 .main-div{
-    margin: 70px 0 0 0;
-    height: 100%;
+    /* margin: 0;
+    height: 100%; */
     /* position: absolute; */
 }
