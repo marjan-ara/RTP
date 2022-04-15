@@ -9,57 +9,38 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { useEffect, useState } from "react";
 import { getToBeApprovedActivities } from "../../api/fakeApi/ToBeApprovedActivities";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
+import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import { DataGrid } from "@mui/x-data-grid";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
 import { Box } from "@mui/system";
 import Snackbar from "@mui/material/Snackbar";
-import MuiAlert  from '@mui/material/Alert';
+import MuiAlert from "@mui/material/Alert";
+import RTPContext from "./../../Context/RTPContext";
+import ActivityItemDetails from "./ActivityItemDetails";
+import { Link } from "react-router-dom";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const Activities = () => {
-  const [activities, setActivities] = useState([]);
+  const ctx = useContext(RTPContext);
+  // const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    setActivities(getToBeApprovedActivities);
+    ctx.setToBeApproved(getToBeApprovedActivities());
   }, []);
 
-  const [open, setOpen] = useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   function RowItem(props) {
-    const { row } = props;
+    const { row, rowId } = props;
     const [rateVal, setRateVal] = useState(row.rate);
-    const hiddenFileInput = useRef(null);
-    const handleFileChange = async (event) => {
-      let fileUploaded = event.target.files[0];
-      let fileName = fileUploaded.name;
-      let fileType = fileUploaded.name
-        .substr(fileUploaded.name.lastIndexOf(".") + 1)
-        .toLowerCase();
-      if (fileType != "jpg" || fileType != "png" || fileType != "jpeg") {
-        handleClick();
-      }
-    };
-    const handleFileUploadClick = (event) => {
-      hiddenFileInput.current.click();
-    };
+
     return (
       <TableRow key={row.id}>
         <TableCell>{row.name}</TableCell>
@@ -67,32 +48,30 @@ const Activities = () => {
         <TableCell>{row.palannedNeededTime}</TableCell>
         <TableCell>{row.start}</TableCell>
         <TableCell>{row.end}</TableCell>
-        {/* <TableCell>{row.rate}</TableCell> */}
         <TableCell>
           <Rating
             name="simple-controlled"
             value={rateVal}
             onChange={(event, newValue) => {
-              // setValue(newValue);
-              setRateVal(newValue);
+              ctx.ChangeRate(rowId, row.id, newValue);
             }}
           />
         </TableCell>
         <TableCell>
-          <IconButton
+          <Link
+            to="/ActivityItemDetails"
+            className="btn btn-primary"
+            onClick={() => ctx.getSelectedItemInfo(rowId, row.id)}
+          >
+            <ReadMoreIcon />
+          </Link>
+          {/* <IconButton
             aria-label="expand row"
             size="small"
-            // onClick={() => setOpen(!open)}
             onClick={handleFileUploadClick}
-          >
-            <AttachFileIcon />
-            <input
-              type="file"
-              ref={hiddenFileInput}
-              style={{ display: "none" }}
-              onChange={handleFileChange}
-            />
-          </IconButton>
+          > */}
+
+          {/* </IconButton> */}
         </TableCell>
       </TableRow>
     );
@@ -100,8 +79,8 @@ const Activities = () => {
 
   function Row(props) {
     const { row } = props;
-    const [open, setOpen] = useState(false);
-
+    //  const [open, setOpen] = useState(false);
+    const open = row.open;
     return (
       <React.Fragment>
         <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -109,7 +88,7 @@ const Activities = () => {
             <IconButton
               aria-label="expand row"
               size="small"
-              onClick={() => setOpen(!open)}
+              onClick={() => ctx.changeOpenState(row.id)}
             >
               {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </IconButton>
@@ -144,7 +123,7 @@ const Activities = () => {
                   </TableHead>
                   <TableBody>
                     {row.items.map((itemRow) => (
-                      <RowItem key={itemRow.id} row={itemRow} />
+                      <RowItem key={itemRow.id} rowId={row.id} row={itemRow} />
                     ))}
                   </TableBody>
                 </Table>
@@ -180,6 +159,7 @@ const Activities = () => {
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
+              <TableCell></TableCell>
               <TableCell>Row</TableCell>
               <TableCell>Name</TableCell>
               <TableCell>InstanceName</TableCell>
@@ -191,17 +171,13 @@ const Activities = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {activities.map((row) => (
+            {ctx.tobeApprovedActivities.map((row) => (
               <Row key={row.id} row={row} />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
-         The file type uor are trying to upload is not supported!
-        </Alert>
-      </Snackbar>
+    
     </div>
   );
 };

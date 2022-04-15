@@ -11,9 +11,10 @@ export const getToBeApprovedActivities = () => {
             entry: "8:00 AM",
             exit: "11:00 AM",
             worker: "Ali",
+            open: false,
             items: [
               {
-                id:1,
+                id: 1,
                 name: "item name 1",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -22,7 +23,7 @@ export const getToBeApprovedActivities = () => {
                 rate: 0,
               },
               {
-                id:2,
+                id: 2,
                 name: "item name 2",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -41,9 +42,10 @@ export const getToBeApprovedActivities = () => {
             entry: "8:00 AM",
             exit: "4:00 PM",
             worker: "Maryam",
+            open: false,
             items: [
               {
-                id:1,
+                id: 1,
                 name: "item name 1",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -51,9 +53,9 @@ export const getToBeApprovedActivities = () => {
                 end: "10:00 AM",
                 rate: 0,
               },
-              
+
               {
-                id:2,
+                id: 2,
                 name: "item name 2",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -62,7 +64,7 @@ export const getToBeApprovedActivities = () => {
                 rate: 0,
               },
               {
-                id:3,
+                id: 3,
                 name: "item name 3",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -71,7 +73,7 @@ export const getToBeApprovedActivities = () => {
                 rate: 0,
               },
               {
-                id:4,
+                id: 4,
                 name: "item name 4",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -90,8 +92,10 @@ export const getToBeApprovedActivities = () => {
             entry: "8:00 AM",
             exit: "8:00 PM",
             worker: "John",
+            open: false,
             items: [
-              {id:1,
+              {
+                id: 1,
                 name: "item name 1",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -100,7 +104,7 @@ export const getToBeApprovedActivities = () => {
                 rate: 0,
               },
               {
-                id:2,
+                id: 2,
                 name: "item name 2",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -119,9 +123,10 @@ export const getToBeApprovedActivities = () => {
             entry: "1:00 PM",
             exit: "5:00 PM",
             worker: "Gardener",
+            open: false,
             items: [
               {
-                id:1,
+                id: 1,
                 name: "item name 1",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -130,7 +135,7 @@ export const getToBeApprovedActivities = () => {
                 rate: 0,
               },
               {
-                id:2,
+                id: 2,
                 name: "item name 2",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -149,9 +154,10 @@ export const getToBeApprovedActivities = () => {
             entry: "10:00 AM",
             exit: "4:00 PM",
             worker: "Nina",
+            open: false,
             items: [
               {
-                id:1,
+                id: 1,
                 name: "item name 1",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -160,7 +166,7 @@ export const getToBeApprovedActivities = () => {
                 rate: 0,
               },
               {
-                id:2,
+                id: 2,
                 name: "item name 2",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -179,9 +185,10 @@ export const getToBeApprovedActivities = () => {
             entry: "2:00 PM",
             exit: "6:00 PM",
             worker: "chef Leo",
+            open: false,
             items: [
               {
-                id:1,
+                id: 1,
                 name: "item name 1",
                 status: "finished",
                 palannedNeededTime: "2 hr",
@@ -190,7 +197,7 @@ export const getToBeApprovedActivities = () => {
                 rate: 0,
               },
               {
-                id:2,
+                id: 2,
                 name: "item name 2",
                 status: "finished",
                 palannedNeededTime: "2 hr",

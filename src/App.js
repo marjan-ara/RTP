@@ -5,24 +5,25 @@ import MainLayout from "./components/Layout";
 import Activities from './Pages/Approver/Activities';
 import Home from "./Pages/Approver/Home";
 import "./assets/css/App.css"
+import ActivityItemDetails from "./Pages/Approver/ActivityItemDetails";
+import GlobalState from "./Context/GlobalState";
 
 const App = (props) => {
     return (
-      <MainLayout>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/toBeApproved" element={<Activities />}></Route>
-          </Routes>
-        </BrowserRouter>
-      </MainLayout>
-      // <div>
-      //  {/* <Activities /> */}
-      //  <Home/>
-      //     {/* <Route path="/" exact component={Activities} />
-      //     <Route path="/ActivityList" exact component={Activities}/> */}
-
-      // </div>
+      <GlobalState>
+        <MainLayout>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/toBeApproved" element={<Activities />}></Route>
+              <Route
+                path="/ActivityItemDetails"
+                element={<ActivityItemDetails />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </MainLayout>
+      </GlobalState>
     );
 }
  
