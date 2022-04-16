@@ -25,3 +25,8 @@ border-color:black;
 .grif-header{
     background-color: #edf7ff;
 }
+
+.comment-div{
+    border-bottom: 0.1em solid gray;
+    width: 100%;
+}
