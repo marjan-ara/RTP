@@ -26,8 +26,8 @@ const GlobalState = (props) => {
     );
     let activityItem = activity.items[index2];
     let selectedItemInfo = {
-      activityId:activityId,
-      activityItemId:itemId,
+      activityId: activityId,
+      activityItemId: itemId,
       activityName: activity.name,
       instanceName: activity.instanceName,
       owner: activity.owner,
@@ -41,18 +41,41 @@ const GlobalState = (props) => {
     setselectedItem(selectedItemInfo);
   };
 
-  const changeOpenState=(rowId)=>{
-    let rows=[...tobeApprovedActivities];
+  const changeOpenState = (rowId) => {
+    let rows = [...tobeApprovedActivities];
     let index1 = rows.findIndex((i) => i.id === rowId);
     rows[index1].open = !rows[index1].open;
     setTobeApprovedActivities(rows);
-  }
+  };
 
   const [comments, setComments] = useState([]);
-  const loadComments = (activityId,activityItemId) => {
-    let commentList=GetComments();
-    commentList=commentList.filter(c => c.rowId===activityId && c.rowItemId===activityItemId);
+  const loadComments = (activityId, activityItemId) => {
+    let commentList = GetComments();
+    commentList = commentList.filter(
+      (c) => c.rowId === activityId && c.rowItemId === activityItemId
+    );
     setComments(commentList);
+  };
+
+  const addComment = (activityId, activityItemId, comment) => {
+    let commentList = [...comments];
+    let newId = commentList.length + 1;
+    let datetime = new Date();
+
+    let newComment = {
+      id: newId,
+      rowId: activityId,
+      rowItemId: activityItemId,
+      comment: comment,
+      userName: "Marjan",
+      dateTime: datetime.toDateString(),
+    };
+
+    console.log(commentList);
+    commentList.push(newComment);
+    console.log(commentList);
+     setComments(commentList);
+    
   };
 
   return (
@@ -66,6 +89,7 @@ const GlobalState = (props) => {
         changeOpenState,
         comments,
         loadComments,
+        addComment,
       }}
     >
       {props.children}
