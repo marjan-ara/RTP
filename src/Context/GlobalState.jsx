@@ -1,6 +1,7 @@
 import React from "react";
 import RTPContext from "./RTPContext";
 import { useState } from "react";
+import { GetComments } from "../api/fakeApi/GetComments";
 
 const GlobalState = (props) => {
   const [tobeApprovedActivities, setTobeApprovedActivities] = useState([]);
@@ -45,6 +46,13 @@ const GlobalState = (props) => {
     setTobeApprovedActivities(rows);
   }
 
+  const [comments, setComments] = useState([]);
+  const loadComments = (activityId,activityItemId) => {
+    let commentList=GetComments();
+    commentList=comments.filter(c => c.rowId===activityId && c.rowItemId===activityItemId);
+    setComments(commentList);
+  };
+
   return (
     <RTPContext.Provider
       value={{
@@ -54,6 +62,8 @@ const GlobalState = (props) => {
         selectedItem,
         getSelectedItemInfo,
         changeOpenState,
+        comments,
+        loadComments,
       }}
     >
       {props.children}
