@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box } from "@mui/system";
 import { Card, Tabs, Typography } from "@mui/material";
 import Tab from "@mui/material/Tab";
 import ItemDetailPanel from "./ItemDetailPanel";
+import RTPContext from "../../Context/RTPContext";
+import Comment from "./Comment";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -39,7 +41,7 @@ function a11yProps(index) {
 
 const ActivityItemDetails = () => {
   const [value, setValue] = React.useState(0);
-
+  const ctx=useContext(RTPContext);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -78,7 +80,7 @@ const ActivityItemDetails = () => {
           <ItemDetailPanel />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+         <Comment activityId={ctx.selectedItem.activityId} activityItemId={ctx.selectedItem.activityItemId} />
         </TabPanel>
         <TabPanel value={value} index={2}>
           Item Three

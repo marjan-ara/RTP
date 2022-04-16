@@ -26,6 +26,8 @@ const GlobalState = (props) => {
     );
     let activityItem = activity.items[index2];
     let selectedItemInfo = {
+      activityId:activityId,
+      activityItemId:itemId,
       activityName: activity.name,
       instanceName: activity.instanceName,
       owner: activity.owner,
@@ -49,7 +51,7 @@ const GlobalState = (props) => {
   const [comments, setComments] = useState([]);
   const loadComments = (activityId,activityItemId) => {
     let commentList=GetComments();
-    commentList=comments.filter(c => c.rowId===activityId && c.rowItemId===activityItemId);
+    commentList=commentList.filter(c => c.rowId===activityId && c.rowItemId===activityItemId);
     setComments(commentList);
   };
 

@@ -6,10 +6,11 @@ const Comment = (props) => {
     const ctx=useContext(RTPContext);
     useEffect(() => {
         ctx.loadComments(activityId,activityItemId);
+        console.log(ctx.comments);
       }, []);
     return (
       <div>
-          {ctx.comments.map(c=)}
+          {ctx.comments.map(c=>(<div key={c.id}>{c.comment}</div>))}
       </div>
     );
   };
