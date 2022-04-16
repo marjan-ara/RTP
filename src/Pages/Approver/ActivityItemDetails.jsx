@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import ItemDetailPanel from "./ItemDetailPanel";
 import RTPContext from "../../Context/RTPContext";
 import Comment from "./Comment";
+import Picture from './Picture';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,7 +47,7 @@ const ActivityItemDetails = () => {
     setValue(newValue);
   };
   return (
-    <div style={{ padding: "8em 10em 1em 10em" }}>
+    <div style={{ padding: "4em 10em 1em 10em" }}>
       <div
         style={{
           width: "80%",
@@ -76,19 +77,19 @@ const ActivityItemDetails = () => {
           </Tabs>
         </Box>
 
-        <TabPanel value={value} index={0}>
+        <TabPanel value={value} className="tab-panel" index={0}>
           <ItemDetailPanel />
         </TabPanel>
-        <TabPanel value={value} index={1}>
+        <TabPanel value={value} className="tab-panel" index={1}>
          <Comment activityId={ctx.selectedItem.activityId} activityItemId={ctx.selectedItem.activityItemId} />
         </TabPanel>
-        <TabPanel value={value} index={2}>
-          Item Three
+        <TabPanel value={value} className="tab-panel" index={2}>
+          <Picture activityId={ctx.selectedItem.activityId} activityItemId={ctx.selectedItem.activityItemId} />
         </TabPanel>
-        <TabPanel value={value} index={3}>
+        <TabPanel value={value} className="tab-panel" index={3}>
           Item Four
         </TabPanel>
-        <TabPanel value={value} index={4}>
+        <TabPanel value={value} className="tab-panel" index={4}>
           Item Five
         </TabPanel>
         {/* </Box> */}

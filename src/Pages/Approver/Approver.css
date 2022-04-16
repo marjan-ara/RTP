@@ -30,3 +30,12 @@ border-color:black;
     border-bottom: 0.1em solid gray;
     width: 100%;
 }
+
+/* .tab-panel{
+    height:400px;
+    overflow: scroll;
+} */
+
+.upload-img-form{
+    float:right !important;
+}
