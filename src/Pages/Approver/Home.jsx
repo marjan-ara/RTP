@@ -1,6 +1,6 @@
 import React from "react";
 import "./Approver.css";
-import { Button, Card, Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import image1 from "./../../assets/img/img1.jpg";
 const Home = () => {
   return (

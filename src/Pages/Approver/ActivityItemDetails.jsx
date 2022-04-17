@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Box } from "@mui/system";
-import { Card, Tabs, Typography } from "@mui/material";
+import { Card, Tabs } from "@mui/material";
 import Tab from "@mui/material/Tab";
 import ItemDetailPanel from "./ItemDetailPanel";
 import RTPContext from "../../Context/RTPContext";

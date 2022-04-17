@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Box } from "@mui/system";
 import RTPContext from "../../Context/RTPContext";
 import { Grid, TextField } from "@mui/material";
@@ -6,11 +6,7 @@ import { inputLabelClasses } from "@mui/material/InputLabel";
 
 const ItemDetailPanel = () => {
   const ctx = useContext(RTPContext);
-//   const [item, setItem] = useState({});
-  useEffect(() => {
-    console.log("ctx.selectedItem : ", ctx.selectedItem);
-    // setItem();
-  }, []);
+
 
   return (
     <Box

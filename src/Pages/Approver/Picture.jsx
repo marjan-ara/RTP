@@ -13,8 +13,7 @@ import image1 from "./../../assets/img/1.jpg";
 import image2 from "./../../assets/img/2.jpg";
 import image3 from "./../../assets/img/3.jpg";
 import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
+
 
 const Picture = () => {
   const [file, setFile] = useState(undefined);
@@ -25,25 +24,11 @@ const Picture = () => {
     let fileType = fileUploaded.name
       .substr(fileUploaded.name.lastIndexOf(".") + 1)
       .toLowerCase();
-    if (fileType != "jpg" && fileType != "jpeg" && fileType != "png") {
+    if (fileType !== "jpg" && fileType !== "jpeg" && fileType !== "png") {
       setOpen(true);
     } else setFile(URL.createObjectURL(fileUploaded));
   };
 
-  const action = (
-    <React.Fragment>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={() => {
-          setOpen(false);
-        }}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
-  );
   return (
     <div>
       <ImageList sx={{ width: "100%", height: 350 }} cols={3} rowHeight={164}>
@@ -103,7 +88,6 @@ const Picture = () => {
         )}
       </ImageList>
       <hr />
-      {/* {file && <img src={file} />} */}
       <FormControl className="upload-img-form">
         <Input
           accept="image/*"
@@ -135,9 +119,6 @@ const Picture = () => {
         onClose={() => {
           setOpen(false);
         }}
-        // message="FILE FORMAT IS NOT SUPPORTED"
-        // action={action}
-        //bodyStyle={{ backgroundColor: "red" }}
       >
         <Alert
           onClose={() => {

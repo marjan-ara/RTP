@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Link, Tooltip, Typography } from "@mui/material";
+import { Avatar, IconButton, Link, Tooltip } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import "./Layout.css";

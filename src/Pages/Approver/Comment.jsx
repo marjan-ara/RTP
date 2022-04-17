@@ -1,8 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import React, { useContext, useEffect,useState } from "react";
 import RTPContext from "../../Context/RTPContext";
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import PersonIcon from '@mui/icons-material/Person';
 
 const Comment = (props) => {
   const { activityId, activityItemId } = props;
@@ -10,7 +8,6 @@ const Comment = (props) => {
   const [newComment,setNewComment]=useState("");
   useEffect(() => {
     ctx.loadComments(activityId, activityItemId);
-    console.log(ctx.comments);
   }, []);
   return (
     <div>

@@ -1,4 +1,3 @@
-import { Grid, Card } from "@mui/material";
 import React from "react";
 import { Helmet } from "react-helmet";
 import TopMenu from "./TopMenu";
@@ -21,18 +20,6 @@ const MainLayout = (props) => {
           </main>
         </div>
       </div>
-      {/* <Grid container>
-        <Grid item xs={12} s={12} md={12} lg={12}> */}
-
-      {/* </Grid>
-        <Grid item xs={12} s={12} md={12} lg={12}> */}
-
-      {/* </Grid>
-      </Grid> */}
-
-      {/* <div>
-        <div className="main-div"></div>
-      </div> */}
     </div>
   );
 };

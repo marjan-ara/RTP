@@ -18,7 +18,6 @@ const GlobalState = (props) => {
 
   const [selectedItem, setselectedItem] = useState({});
   const getSelectedItemInfo = (activityId, itemId) => {
-    console.log("context : ", activityId, itemId);
     let index1 = tobeApprovedActivities.findIndex((i) => i.id === activityId);
     let activity = tobeApprovedActivities[index1];
     let index2 = tobeApprovedActivities[index1].items.findIndex(
@@ -71,9 +70,7 @@ const GlobalState = (props) => {
       dateTime: datetime.toDateString(),
     };
 
-    console.log(commentList);
     commentList.push(newComment);
-    console.log(commentList);
      setComments(commentList);
     
   };

@@ -9,29 +9,20 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import { getToBeApprovedActivities } from "../../api/fakeApi/ToBeApprovedActivities";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
-import { DataGrid } from "@mui/x-data-grid";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
 import { Box } from "@mui/system";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
 import RTPContext from "./../../Context/RTPContext";
-import ActivityItemDetails from "./ActivityItemDetails";
 import { Link } from "react-router-dom";
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 const Activities = () => {
   const ctx = useContext(RTPContext);
-  // const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     ctx.setToBeApproved(getToBeApprovedActivities());
@@ -39,7 +30,7 @@ const Activities = () => {
 
   function RowItem(props) {
     const { row, rowId } = props;
-    const [rateVal, setRateVal] = useState(row.rate);
+    const [rateVal,] = useState(row.rate);
 
     return (
       <TableRow key={row.id}>
@@ -65,13 +56,6 @@ const Activities = () => {
           >
             <ReadMoreIcon />
           </Link>
-          {/* <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={handleFileUploadClick}
-          > */}
-
-          {/* </IconButton> */}
         </TableCell>
       </TableRow>
     );
@@ -79,7 +63,6 @@ const Activities = () => {
 
   function Row(props) {
     const { row } = props;
-    //  const [open, setOpen] = useState(false);
     const open = row.open;
     return (
       <React.Fragment>
@@ -134,24 +117,6 @@ const Activities = () => {
       </React.Fragment>
     );
   }
-
-  // Row.propTypes = {
-  //   row: PropTypes.shape({
-  //     calories: PropTypes.number.isRequired,
-  //     carbs: PropTypes.number.isRequired,
-  //     fat: PropTypes.number.isRequired,
-  //     history: PropTypes.arrayOf(
-  //       PropTypes.shape({
-  //         amount: PropTypes.number.isRequired,
-  //         customerId: PropTypes.string.isRequired,
-  //         date: PropTypes.string.isRequired,
-  //       })
-  //     ).isRequired,
-  //     name: PropTypes.string.isRequired,
-  //     price: PropTypes.number.isRequired,
-  //     protein: PropTypes.number.isRequired,
-  //   }).isRequired,
-  // };
 
   return (
     <div style={{ padding: "8em 10em 1em 10em" }}>
