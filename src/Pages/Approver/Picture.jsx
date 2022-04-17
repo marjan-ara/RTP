@@ -87,7 +87,7 @@ const Picture = () => {
           </ImageListItem>
         )}
       </ImageList>
-      <hr />
+
       <FormControl className="upload-img-form">
         <Input
           accept="image/*"
