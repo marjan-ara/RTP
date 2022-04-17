@@ -30,7 +30,7 @@ const Picture = () => {
   };
 
   return (
-    <div>
+    <div style={{justifyContent:"center"}}>
       <ImageList sx={{ width: "100%", height: 350 }} cols={3} rowHeight={164}>
         <ImageListItem>
           <img
@@ -102,7 +102,6 @@ const Picture = () => {
           <Button
             variant="outlined"
             sx={{
-              float: "right",
               width: "200px",
               borderColor: "#9c27b0",
               color: "#9c27b0",

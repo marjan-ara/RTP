@@ -6,6 +6,7 @@ import ItemDetailPanel from "./ItemDetailPanel";
 import RTPContext from "../../Context/RTPContext";
 import Comment from "./Comment";
 import Picture from './Picture';
+import Video from "./Video";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -87,7 +88,7 @@ const ActivityItemDetails = () => {
           <Picture activityId={ctx.selectedItem.activityId} activityItemId={ctx.selectedItem.activityItemId} />
         </TabPanel>
         <TabPanel value={value} className="tab-panel" index={3}>
-          Item Four
+         <Video />
         </TabPanel>
         <TabPanel value={value} className="tab-panel" index={4}>
           Item Five
