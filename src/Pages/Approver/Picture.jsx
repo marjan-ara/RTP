@@ -1,5 +1,5 @@
 import {
-    Alert,
+  Alert,
   Button,
   FormControl,
   ImageList,
@@ -7,17 +7,42 @@ import {
   ImageListItemBar,
   Input,
 } from "@mui/material";
-import React from "react";
-import { useState } from "react";
-import image1 from "./../../assets/img/1.jpg";
-import image2 from "./../../assets/img/2.jpg";
-import image3 from "./../../assets/img/3.jpg";
+import React, { useContext, useEffect } from "react";
 import Snackbar from "@mui/material/Snackbar";
+import RTPContext from "../../Context/RTPContext";
+
+
+const Item = (props) => {
+  const { image, user } = props;
+  return (
+    <ImageListItem>
+      <img
+        src={image}
+        srcSet={image}
+       alt="name"
+        style={{ height: "100%" }}
+      />
+      <ImageListItemBar
+        title="image"
+        subtitle={<span>by: {user} </span>}
+        position="below"
+      />
+    </ImageListItem>
+  );
+}
+
 
 
 const Picture = () => {
-  const [file, setFile] = useState(undefined);
   const [open, setOpen] = React.useState(false);
+  const ctx = useContext(RTPContext);
+
+  const activityId = ctx.selectedItem.activityId;
+  const activityItemId = ctx.selectedItem.activityItemId;
+
+  useEffect(() => {
+    ctx.loadImages(activityId, activityItemId);
+  }, []);
 
   const handleChange = (event) => {
     let fileUploaded = event.target.files[0];
@@ -26,66 +51,19 @@ const Picture = () => {
       .toLowerCase();
     if (fileType !== "jpg" && fileType !== "jpeg" && fileType !== "png") {
       setOpen(true);
-    } else setFile(URL.createObjectURL(fileUploaded));
+    } else {
+      ctx.addImage( ctx.selectedItem.activityId,
+        ctx.selectedItem.activityItemId,URL.createObjectURL(fileUploaded));
+    };
   };
 
   return (
-    <div style={{justifyContent:"center"}}>
+    <div style={{ justifyContent: "center" }}>
       <ImageList sx={{ width: "100%", height: 350 }} cols={3} rowHeight={164}>
-        <ImageListItem>
-          <img
-            src={image1}
-            srcSet={image1}
-            alt="image1"
-            style={{ height: "100%" }}
-          />
-          <ImageListItemBar
-            title="image1"
-            subtitle={<span>by: Marjan </span>}
-            position="below"
-          />
-        </ImageListItem>
-        <ImageListItem>
-          <img
-            src={image2}
-            srcSet={image2}
-            alt="image2"
-            style={{ height: "100%" }}
-          />
-          <ImageListItemBar
-            title="image2"
-            subtitle={<span>by: Marjan </span>}
-            position="below"
-          />
-        </ImageListItem>
-        <ImageListItem>
-          <img
-            src={image3}
-            srcSet={image3}
-            alt="image3"
-            style={{ height: "100%" }}
-          />
-          <ImageListItemBar
-            title="image3"
-            subtitle={<span>by: Siavash </span>}
-            position="below"
-          />
-        </ImageListItem>
-        {file && (
-          <ImageListItem>
-            <img
-              src={file}
-              srcSet={file}
-              alt="file"
-              style={{ height: "100%" }}
-            />
-            <ImageListItemBar
-              title="file"
-              subtitle={<span>by: Marjan </span>}
-              position="below"
-            />
-          </ImageListItem>
-        )}
+        {ctx.images.map((im) => (
+          <Item key={im.id} image={im.img} user={im.userName} />
+        ))
+        }
       </ImageList>
 
       <FormControl className="upload-img-form">

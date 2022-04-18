@@ -23,7 +23,7 @@ const Video = () => {
     let fileType = fileUploaded.name
       .substr(fileUploaded.name.lastIndexOf(".") + 1)
       .toLowerCase();
-    if (fileType != "mp4") {
+    if (fileType !== "mp4") {
       setOpen(true);
     } else setFile(URL.createObjectURL(fileUploaded));
   };
