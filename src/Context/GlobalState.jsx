@@ -2,6 +2,7 @@ import React from "react";
 import RTPContext from "./RTPContext";
 import { useState } from "react";
 import { GetComments } from "../api/fakeApi/GetComments";
+import { GetImages } from "../api/fakeApi/GetImages";
 
 const GlobalState = (props) => {
   const [tobeApprovedActivities, setTobeApprovedActivities] = useState([]);
@@ -56,6 +57,7 @@ const GlobalState = (props) => {
     setComments(commentList);
   };
 
+
   const addComment = (activityId, activityItemId, comment) => {
     let commentList = [...comments];
     let newId = commentList.length + 1;
@@ -75,6 +77,33 @@ const GlobalState = (props) => {
     
   };
 
+  const [images, setImages] = useState([]);
+  const loadImages = (activityId, activityItemId) => {
+    let imgList = GetImages();
+    imgList = imgList.filter(
+      (i) => i.rowId === activityId && i.rowItemId === activityItemId
+    );
+    setImages(imgList);
+  };
+  const addImage = (activityId, activityItemId, image) => {
+    let imgList = [...images];
+    let newId = imgList.length + 1;
+    let datetime = new Date();
+
+    let newImg = {
+      id: newId,
+      rowId: activityId,
+      rowItemId: activityItemId,
+      img: image,
+      title: "image",
+      userName: "Marjan",
+      dateTime: datetime.toDateString(),
+    };
+
+    imgList.push(newImg);
+     setImages(imgList);
+    
+  };
   return (
     <RTPContext.Provider
       value={{
@@ -87,6 +116,9 @@ const GlobalState = (props) => {
         comments,
         loadComments,
         addComment,
+        images,
+        loadImages,
+        addImage
       }}
     >
       {props.children}

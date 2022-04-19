@@ -1,6 +1,8 @@
 import React from 'react'
 const Voice = () => {
-    return (  );
+    return ( <div>
+        
+    </div> );
 }
  
 export default Voice;
